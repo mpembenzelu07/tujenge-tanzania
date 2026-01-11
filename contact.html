@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Tujenge Tanzania</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #1E8449;
+            --secondary: #2E86C1;
+            --accent: #F39C12;
+            --dark: #17202A;
+            --light: #F8F9F9;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --border-radius: 8px;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            animation: slideDown 0.5s ease;
+        }
+        
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+            padding: 8px 16px;
+            border-radius: var(--border-radius);
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+            background-color: rgba(30, 132, 73, 0.1);
+        }
+        
+        .nav-links a.active {
+            color: var(--primary);
+            background-color: rgba(30, 132, 73, 0.1);
+        }
+        
+        .nav-links a.active:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 6px;
+            background-color: var(--primary);
+            border-radius: 50%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+        }
+        
+        /* Contact Hero */
+        .contact-hero {
+            background: linear-gradient(135deg, rgba(30, 132, 73, 0.9), rgba(46, 134, 193, 0.9)), 
+                        url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-hero:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: gradientShift 8s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { transform: translateX(-100%); }
+            50% { transform: translateX(100%); }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease;
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .contact-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .contact-hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            padding: 100px 0;
+            background-color: white;
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+        
+        @media (max-width: 992px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+        
+        .section-title p {
+            color: #666;
+            max-width: 700px;
+            margin: 20px auto 0;
+        }
+        
+        /* Contact Form */
+        .contact-form {
+            background-color: #f8f9fa;
+            padding: 50px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-form:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: all 0.3s;
+            background-color: white;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(30, 132, 73, 0.1);
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        @media (max-width: 576px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .submit-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: var(--border-radius);
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .submit-btn:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .submit-btn:hover:before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .submit-btn:hover {
+            background-color: #156b3a;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .submit-btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .form-message {
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-top: 20px;
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .form-message.success {
+            background-color: rgba(30, 132, 73, 0.1);
+            color: var(--primary);
+            border: 1px solid rgba(30, 132, 73, 0.3);
+        }
+        
+        .form-message.error {
+            background-color: rgba(231, 76, 60, 0.1);
+            color: #e74c3c;
+            border: 1px solid rgba(231, 76, 60, 0.3);
+        }
+        
+        /* Contact Info */
+        .contact-info {
+            padding: 20px 0;
+        }
+        
+        .info-card {
+            background-color: #f8f9fa;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+            transition: transform 0.3s;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .info-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .info-card h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .info-card ul {
+            list-style: none;
+        }
+        
+        .info-card li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        
+        .info-card i {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+        
+        /* Map Section */
+        .map-section {
+            padding: 80px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .map-container {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            height: 400px;
+            position: relative;
+        }
+        
+        .map-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 40px;
+        }
+        
+        .map-placeholder i {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            padding: 100px 0;
+            background-color: white;
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            border-bottom: 1px solid #eee;
+            margin-bottom: 15px;
+        }
+        
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            padding: 20px 0;
+            transition: all 0.3s;
+        }
+        
+        .faq-question:hover {
+            color: var(--primary);
+        }
+        
+        .faq-question h3 {
+            font-size: 1.2rem;
+            color: var(--dark);
+            font-weight: 600;
+        }
+        
+        .faq-question i {
+            color: var(--primary);
+            transition: transform 0.3s;
+        }
+        
+        .faq-answer {
+            padding: 0 20px 20px 0;
+            color: #666;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        .faq-answer.active {
+            max-height: 500px;
+        }
+        
+        /* Team Contact */
+        .team-contact {
+            padding: 80px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .team-member {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .member-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        
+        .member-info h4 {
+            color: var(--dark);
+            margin-bottom: 5px;
+            font-size: 1.3rem;
+        }
+        
+        .member-info p {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .member-contact {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .member-contact a {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(30, 132, 73, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .member-contact a:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        /* Floating Action Button */
+        .fab {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 20px rgba(30, 132, 73, 0.3);
+            transition: all 0.3s;
+            z-index: 1000;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(30, 132, 73, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(30, 132, 73, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(30, 132, 73, 0); }
+        }
+        
+        .fab:hover {
+            transform: scale(1.1);
+            background-color: #156b3a;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 70px 0 30px;
+            position: relative;
+        }
+        
+        footer:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--accent), var(--secondary));
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-col h3 {
+            color: var(--accent);
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary);
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 12px;
+            transition: transform 0.3s;
+        }
+        
+        .footer-col ul li:hover {
+            transform: translateX(5px);
+        }
+        
+        .footer-col a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .footer-col a:hover {
+            color: var(--accent);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background-color: white;
+                flex-direction: column;
+                padding: 30px;
+                box-shadow: var(--shadow);
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: all 0.3s;
+                z-index: 999;
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .contact-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .contact-form {
+                padding: 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .contact-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .contact-hero p {
+                font-size: 1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">
+                    <i class="fas fa-mountain"></i>
+                    Tujenge<span>Tanzania</span>
+                </a>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="marketplace.html">Marketplace</a></li>
+                    <li><a href="invest.html">Invest</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contact Hero -->
+    <section class="contact-hero">
+        <div class="container hero-content">
+            <h1>Get In Touch With Us</h1>
+            <p>Have questions about our projects, investments, or marketplace? We're here to help you make a difference in Tanzania.</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Us</h2>
+                <p>Reach out to us through any of the following channels</p>
+            </div>
+            
+            <div class="contact-container">
+                <!-- Contact Form -->
+                <div class="contact-form-container">
+                    <h3 style="color: var(--primary); margin-bottom: 30px; font-size: 1.8rem;">Send Us a Message</h3>
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name *</label>
+                                <input type="text" id="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name *</label>
+                                <input type="text" id="lastName" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject *</label>
+                            <select id="subject" required>
+                                <option value="">Select a topic</option>
+                                <option value="investment">Investment Opportunities</option>
+                                <option value="partnership">Partnership Inquiry</option>
+                                <option value="marketplace">Marketplace Questions</option>
+                                <option value="project">Project Information</option>
+                                <option value="career">Career Opportunities</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" placeholder="Tell us how we can help you..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn" id="submitBtn">
+                            <span id="btnText">Send Message</span>
+                            <div id="btnLoader" style="display: none;">
+                                <i class="fas fa-spinner fa-spin"></i> Sending...
+                            </div>
+                        </button>
+                        
+                        <div id="formMessage" class="form-message"></div>
+                    </form>
+                </div>
+                
+                <!-- Contact Information -->
+                <div class="contact-info">
+                    <div class="info-card">
+                        <h3><i class="fas fa-map-marker-alt"></i> Our Location</h3>
+                        <ul>
+                            <li>
+                                <i class="fas fa-building"></i>
+                                <div>
+                                    <strong>Head Office</strong><br>
+                                    Tujenge Tanzania House<br>
+                                    Samora Avenue, Plot 123<br>
+                                    Dar es Salaam, Tanzania
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-map-pin"></i>
+                                <div>
+                                    <strong>Regional Office</strong><br>
+                                    Arusha Innovation Hub<br>
+                                    Njiro Road, Arusha<br>
+                                    Tanzania
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3><i class="fas fa-address-book"></i> Contact Details</h3>
+                        <ul>
+                            <li>
+                                <i class="fas fa-phone"></i>
+                                <div>
+                                    <strong>Phone Numbers</strong><br>
+                                    Main: +255 22 123 4567<br>
+                                    Mobile: +255 765 432 100
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-envelope"></i>
+                                <div>
+                                    <strong>Email Addresses</strong><br>
+                                    General: info@tujenge-tz.co.tz<br>
+                                    Support: support@tujenge-tz.co.tz
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-clock"></i>
+                                <div>
+                                    <strong>Business Hours</strong><br>
+                                    Monday - Friday: 8:00 AM - 6:00 PM<br>
+                                    Saturday: 9:00 AM - 2:00 PM
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3><i class="fas fa-headset"></i> Quick Support</h3>
+                        <ul>
+                            <li>
+                                <i class="fas fa-comments"></i>
+                                <div>
+                                    <strong>Live Chat</strong><br>
+                                    Available during business hours
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-question-circle"></i>
+                                <div>
+                                    <strong>FAQ Portal</strong><br>
+                                    Find instant answers to common questions
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-file-alt"></i>
+                                <div>
+                                    <strong>Documentation</strong><br>
+                                    Download brochures and reports
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Contact -->
+    <section class="team-contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Our Team</h2>
+                <p>Get in touch with our leadership team directly</p>
+            </div>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-avatar">IM</div>
+                    <div class="member-info">
+                        <h4>Irene Mgimba</h4>
+                        <p>CEO & Founder</p>
+                        <p>Strategic partnerships and overall direction</p>
+                    </div>
+                    <div class="member-contact">
+                        <a href="mailto:irene@tujenge-tz.co.tz" title="Email"><i class="fas fa-envelope"></i></a>
+                        <a href="tel:+255765432101" title="Call"><i class="fas fa-phone"></i></a>
+                        <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-avatar">GW</div>
+                    <div class="member-info">
+                        <h4>George William</h4>
+                        <p>Chief Technology Officer</p>
+                        <p>Technical inquiries and platform support</p>
+                    </div>
+                    <div class="member-contact">
+                        <a href="mailto:george@tujenge-tz.co.tz" title="Email"><i class="fas fa-envelope"></i></a>
+                        <a href="tel:+255765432102" title="Call"><i class="fas fa-phone"></i></a>
+                        <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-avatar">BM</div>
+                    <div class="member-info">
+                        <h4>Blessing George Mtangoo</h4>
+                        <p>Community Development Head</p>
+                        <p>Project partnerships and community engagement</p>
+                    </div>
+                    <div class="member-contact">
+                        <a href="mailto:blessing@tujenge-tz.co.tz" title="Email"><i class="fas fa-envelope"></i></a>
+                        <a href="tel:+255765432103" title="Call"><i class="fas fa-phone"></i></a>
+                        <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-avatar">PW</div>
+                    <div class="member-info">
+                        <h4>Paul William</h4>
+                        <p>Investment Director</p>
+                        <p>Investment opportunities and portfolio management</p>
+                    </div>
+                    <div class="member-contact">
+                        <a href="mailto:paul@tujenge-tz.co.tz" title="Email"><i class="fas fa-envelope"></i></a>
+                        <a href="tel:+255765432104" title="Call"><i class="fas fa-phone"></i></a>
+                        <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Find Us</h2>
+                <p>Visit our offices or schedule a meeting</p>
+            </div>
+            
+            <div class="map-container">
+                <div class="map-placeholder">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <h3>Our Location in Dar es Salaam</h3>
+                    <p>Tujenge Tanzania House, Samora Avenue, Plot 123</p>
+                    <p style="margin-top: 20px;">
+                        <a href="https://maps.google.com/?q=Dar+es+Salaam,+Tanzania" 
+                           style="color: white; text-decoration: underline;" 
+                           target="_blank">
+                           Open in Google Maps
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+                <p>Quick answers to common questions</p>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>How can I invest in Tujenge Tanzania projects?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You can invest through our investment portal on the Invest page. We offer various investment opportunities with different risk profiles and returns. Minimum investment starts at $500. Contact our Investment Director Paul William for personalized guidance.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>How do I become a seller on your marketplace?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Visit our Marketplace page and click on "Become a Seller." You'll need to register your business, provide necessary documentation, and our team will verify your products. We support farmers, artisans, and small businesses across Tanzania.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>What is your response time for inquiries?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We strive to respond to all inquiries within 24 hours during business days. Urgent matters are prioritized. For investment-related questions, we aim to respond within 4 hours during business hours.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>Do you offer partnership opportunities for NGOs?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we actively partner with NGOs, government agencies, and international organizations. Contact our Community Development Head Blessing George Mtangoo to discuss potential collaborations and partnership models.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>How can I volunteer or intern with Tujenge Tanzania?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We welcome volunteers and interns in various departments. Send your CV and motivation letter to careers@tujenge-tz.co.tz. Please specify your area of interest and availability.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Action Button -->
+    <a href="#" class="fab" id="whatsappFab" title="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Tujenge Tanzania</h3>
+                    <p>Building sustainable prosperity through innovation, investment, and community development.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="projects.html"><i class="fas fa-chevron-right"></i> Projects</a></li>
+                        <li><a href="marketplace.html"><i class="fas fa-chevron-right"></i> Marketplace</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Business</h3>
+                    <ul>
+                        <li><a href="invest.html"><i class="fas fa-chevron-right"></i> Investment</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Partnerships</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Careers</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Media Kit</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Dar es Salaam, Tanzania</a></li>
+                        <li><a href="tel:+255123456789"><i class="fas fa-phone"></i> +255 123 456 789</a></li>
+                        <li><a href="mailto:info@tujenge-tz.co.tz"><i class="fas fa-envelope"></i> info@tujenge-tz.co.tz</a></li>
+                        <li><a href="#"><i class="fas fa-clock"></i> Mon-Fri: 8AM-6PM</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Tujenge Tanzania. All rights reserved. | Building a Better Future Together</p>
+                <p style="margin-top: 10px; font-size: 0.9rem;">
+                    <a href="#" style="color: #aaa; margin: 0 10px;">Privacy Policy</a> | 
+                    <a href="#" style="color: #aaa; margin: 0 10px;">Terms of Service</a> | 
+                    <a href="#" style="color: #aaa; margin: 0 10px;">Cookie Policy</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Contact Form Submission
+        const contactForm = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const btnText = document.getElementById('btnText');
+        const btnLoader = document.getElementById('btnLoader');
+        const formMessage = document.getElementById('formMessage');
+        
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = {
+                firstName: document.getElementById('firstName').value.trim(),
+                lastName: document.getElementById('lastName').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                phone: document.getElementById('phone').value.trim(),
+                subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value.trim()
+            };
+            
+            // Validate form
+            if (!formData.firstName || !formData.lastName || !formData.email || !formData.subject || !formData.message) {
+                showMessage('Please fill in all required fields.', 'error');
+                return;
+            }
+            
+            if (!validateEmail(formData.email)) {
+                showMessage('Please enter a valid email address.', 'error');
+                return;
+            }
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            btnText.style.display = 'none';
+            btnLoader.style.display = 'block';
+            
+            // Simulate API call
+            setTimeout(() => {
+                // In a real application, this would be an actual API call
+                console.log('Form submitted:', formData);
+                
+                // Show success message
+                showMessage('Thank you! Your message has been sent successfully. We will respond within 24 hours.', 'success');
+                
+                // Reset form
+                contactForm.reset();
+                
+                // Restore button
+                submitBtn.disabled = false;
+                btnText.style.display = 'block';
+                btnLoader.style.display = 'none';
+                
+                // Store in localStorage (simulating database)
+                const submissions = JSON.parse(localStorage.getItem('contactSubmissions') || '[]');
+                submissions.push({
+                    ...formData,
+                    timestamp: new Date().toISOString()
+                });
+                localStorage.setItem('contactSubmissions', JSON.stringify(submissions));
+                
+            }, 1500);
+        });
+        
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+        
+        function showMessage(text, type) {
+            formMessage.textContent = text;
+            formMessage.className = `form-message ${type}`;
+            formMessage.style.display = 'block';
+            
+            // Auto-hide message after 5 seconds
+            setTimeout(() => {
+                formMessage.style.display = 'none';
+            }, 5000);
+        }
+        
+        // FAQ Toggle Functionality
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('i');
+            
+            // Close all other FAQs
+            document.querySelectorAll('.faq-answer').forEach(item => {
+                if (item !== answer) {
+                    item.classList.remove('active');
+                    item.previousElementSibling.querySelector('i').style.transform = 'rotate(0deg)';
+                }
+            });
+            
+            // Toggle current FAQ
+            answer.classList.toggle('active');
+            
+            if (answer.classList.contains('active')) {
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+        
+        // WhatsApp FAB
+        const whatsappFab = document.getElementById('whatsappFab');
+        whatsappFab.addEventListener('click', (e) => {
+            e.preventDefault();
+            const phoneNumber = '255123456789';
+            const message = 'Hello Tujenge Tanzania, I would like to get more information about...';
+            const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        });
+        
+        // Team member contact buttons
+        document.querySelectorAll('.member-contact a').forEach(button => {
+            button.addEventListener('click', (e) => {
+                if (button.title === 'Email') {
+                    e.preventDefault();
+                    const email = button.href.split('mailto:')[1];
+                    window.location.href = `mailto:${email}?subject=Inquiry from Tujenge Tanzania Website`;
+                }
+                // Phone and LinkedIn links work normally
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if (this.getAttribute('href') !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+        
+        // Add active class to current page
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            if (link.getAttribute('href') === currentPage) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
+        
+        // Form input validation on blur
+        document.querySelectorAll('#contactForm input, #contactForm textarea').forEach(input => {
+            input.addEventListener('blur', () => {
+                if (input.hasAttribute('required') && !input.value.trim()) {
+                    input.style.borderColor = '#e74c3c';
+                } else {
+                    input.style.borderColor = '#ddd';
+                }
+            });
+        });
+        
+        // Auto-format phone number
+        const phoneInput = document.getElementById('phone');
+        phoneInput.addEventListener('input', (e) => {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 0) {
+                value = '+255 ' + value.substring(0, 3) + ' ' + value.substring(3, 6) + ' ' + value.substring(6, 9);
+            }
+            e.target.value = value;
+        });
+        
+        // Initialize with one FAQ open
+        document.querySelector('.faq-question').click();
+    </script>
+</body>
+</html>
