@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketplace - Tujenge Tanzania</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #1E8449;
+            --secondary: #2E86C1;
+            --accent: #F39C12;
+            --dark: #17202A;
+            --light: #F8F9F9;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --border-radius: 8px;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s;
+            padding: 8px 16px;
+            border-radius: var(--border-radius);
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary);
+            background-color: rgba(30, 132, 73, 0.1);
+        }
+        
+        .cart-icon {
+            position: relative;
+            margin-left: 20px;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--accent);
+            color: white;
+            font-size: 0.8rem;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Marketplace Hero */
+        .marketplace-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .marketplace-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .marketplace-hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .search-bar {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+        }
+        
+        .search-bar input {
+            flex: 1;
+            padding: 15px 20px;
+            border: none;
+            border-radius: var(--border-radius) 0 0 var(--border-radius);
+            font-size: 1rem;
+        }
+        
+        .search-bar button {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 0 30px;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        /* Categories */
+        .categories-section {
+            padding: 60px 0 30px;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        
+        .category-card {
+            background-color: #f8f9fa;
+            border-radius: var(--border-radius);
+            padding: 30px 20px;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--dark);
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+            background-color: rgba(30, 132, 73, 0.1);
+        }
+        
+        .category-icon {
+            width: 70px;
+            height: 70px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            box-shadow: var(--shadow);
+        }
+        
+        .category-icon i {
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+        
+        /* Products Grid */
+        .products-section {
+            padding: 80px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .products-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .filter-options {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 8px 20px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .product-img {
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: var(--accent);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .product-content {
+            padding: 25px;
+        }
+        
+        .product-category {
+            color: var(--primary);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .product-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .product-description {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            height: 60px;
+            overflow: hidden;
+        }
+        
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+        
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .add-to-cart {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .add-to-cart:hover {
+            background-color: #156b3a;
+        }
+        
+        /* Farmer Stories */
+        .stories-section {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .story-card {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+            background-color: #f8f9fa;
+            padding: 30px;
+            border-radius: var(--border-radius);
+        }
+        
+        .story-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+            flex-shrink: 0;
+        }
+        
+        .story-content h4 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .story-content p {
+            color: #666;
+            font-style: italic;
+        }
+        
+        /* How It Works */
+        .how-it-works {
+            padding: 80px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        
+        .step {
+            text-align: center;
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 25px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 70px 0 30px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-col h3 {
+            color: var(--accent);
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-col a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-col a:hover {
+            color: var(--accent);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .marketplace-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .search-bar {
+                flex-direction: column;
+            }
+            
+            .search-bar input, .search-bar button {
+                width: 100%;
+                border-radius: var(--border-radius);
+                margin-bottom: 10px;
+            }
+            
+            .products-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .story-card {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">
+                    <i class="fas fa-mountain"></i>
+                    Tujenge<span>Tanzania</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="marketplace.html" class="active">Marketplace</a></li>
+                    <li><a href="invest.html">Invest</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li class="cart-icon">
+                        <a href="#"><i class="fas fa-shopping-cart"></i></a>
+                        <span class="cart-count">3</span>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Marketplace Hero -->
+    <section class="marketplace-hero">
+        <div class="container">
+            <h1>Tanzanian Marketplace</h1>
+            <p>Discover authentic Tanzanian products directly from farmers and artisans. Every purchase supports local communities and sustainable development.</p>
+            <div class="search-bar">
+                <input type="text" placeholder="Search for products (coffee, spices, crafts, textiles...)">
+                <button><i class="fas fa-search"></i> Search</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="categories-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Shop by Category</h2>
+                <p>Explore our curated selection of Tanzanian products</p>
+            </div>
+            <div class="categories-grid">
+                <a href="#" class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-coffee"></i>
+                    </div>
+                    <h3>Coffee & Tea</h3>
+                    <p>Premium Arabica from Kilimanjaro slopes</p>
+                </a>
+                <a href="#" class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-pepper-hot"></i>
+                    </div>
+                    <h3>Spices</h3>
+                    <p>Cloves, cinnamon, vanilla from Zanzibar</p>
+                </a>
+                <a href="#" class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <h3>Textiles</h3>
+                    <p>Authentic Kitenge and Khanga fabrics</p>
+                </a>
+                <a href="#" class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3>Handicrafts</h3>
+                    <p>Wood carvings, beadwork, and pottery</p>
+                </a>
+                <a href="#" class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-honey-pot"></i>
+                    </div>
+                    <h3>Natural Products</h3>
+                    <p>Raw honey, shea butter, essential oils</p>
+                </a>
+                <a href="#" class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3>Organic Produce</h3>
+                    <p>Fresh fruits, vegetables, and grains</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Grid -->
+    <section class="products-section">
+        <div class="container">
+            <div class="products-header">
+                <div class="section-title" style="text-align: left; margin-bottom: 0;">
+                    <h2>Featured Products</h2>
+                </div>
+                <div class="filter-options">
+                    <button class="filter-btn active">All</button>
+                    <button class="filter-btn">Best Sellers</button>
+                    <button class="filter-btn">New Arrivals</button>
+                    <button class="filter-btn">Fair Trade</button>
+                    <button class="filter-btn">Organic</button>
+                </div>
+            </div>
+            
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <span class="product-badge">Best Seller</span>
+                    </div>
+                    <div class="product-content">
+                        <div class="product-category">Coffee</div>
+                        <h3 class="product-title">Kilimanjaro Peaberry Coffee</h3>
+                        <p class="product-description">Premium Arabica beans grown on the slopes of Mount Kilimanjaro. Rich flavor with notes of chocolate and berries.</p>
+                        <div class="product-footer">
+                            <div class="product-price">$24.99</div>
+                            <button class="add-to-cart" onclick="addToCart('Kilimanjaro Coffee')">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1592921870789-04563d55041c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <span class="product-badge">Fair Trade</span>
+                    </div>
+                    <div class="product-content">
+                        <div class="product-category">Spices</div>
+                        <h3 class="product-title">Zanzibar Cloves</h3>
+                        <p class="product-description">Premium quality cloves from Zanzibar, known as the "Spice Islands". Perfect for cooking and medicinal uses.</p>
+                        <div class="product-footer">
+                            <div class="product-price">$12.99</div>
+                            <button class="add-to-cart" onclick="addToCart('Zanzibar Cloves')">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <span class="product-badge">New</span>
+                    </div>
+                    <div class="product-content">
+                        <div class="product-category">Textiles</div>
+                        <h3 class="product-title">Kitenge Fabric (6 yards)</h3>
+                        <p class="product-description">Vibrant traditional Tanzanian fabric with unique patterns. Perfect for dresses, skirts, and home decor.</p>
+                        <div class="product-footer">
+                            <div class="product-price">$38.50</div>
+                            <button class="add-to-cart" onclick="addToCart('Kitenge Fabric')">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <span class="product-badge">Organic</span>
+                    </div>
+                    <div class="product-content">
+                        <div class="product-category">Honey</div>
+                        <h3 class="product-title">Raw Tanzanian Honey</h3>
+                        <p class="product-description">Pure, raw honey harvested from remote forests of Tanzania. Unprocessed and packed with natural nutrients.</p>
+                        <div class="product-footer">
+                            <div class="product-price">$18.75</div>
+                            <button class="add-to-cart" onclick="addToCart('Raw Honey')">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 5 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1581089781785-603411fa81f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <span class="product-badge">Handmade</span>
+                    </div>
+                    <div class="product-content">
+                        <div class="product-category">Handicrafts</div>
+                        <h3 class="product-title">Makonde Wood Carving</h3>
+                        <p class="product-description">Intricate wood carving by Makonde artisans from Southern Tanzania. Each piece tells a unique story.</p>
+                        <div class="product-footer">
+                            <div class="product-price">$65.00</div>
+                            <button class="add-to-cart" onclick="addToCart('Wood Carving')">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1596040033221-a9889e6f6c0e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <span class="product-badge">Best Seller</span>
+                    </div>
+                    <div class="product-content">
+                        <div class="product-category">Tea</div>
+                        <h3 class="product-title">Tanzanian Chai Blend</h3>
+                        <p class="product-description">Aromatic black tea blended with Tanzanian spices. Perfect for making traditional chai tea.</p>
+                        <div class="product-footer">
+                            <div class="product-price">$16.99</div>
+                            <button class="add-to-cart" onclick="addToCart('Chai Blend')">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 7 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1594032194503-0c0c5b0d4e2c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <span class="product-badge">Organic</span>
+                    </div>
+                    <div class="product-content">
+                        <div class="product-category">Shea Butter</div>
+                        <h3 class="product-title">Pure African Shea Butter</h3>
+                        <p class="product-description">100% natural shea butter from Tanzanian shea trees. Excellent for skin and hair care.</p>
+                        <div class="product-footer">
+                            <div class="product-price">$22.50</div>
+                            <button class="add-to-cart" onclick="addToCart('Shea Butter')">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 8 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1559056199-641a0ac8b55e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <span class="product-badge">Fair Trade</span>
+                    </div>
+                    <div class="product-content">
+                        <div class="product-category">Baskets</div>
+                        <h3 class="product-title">Handwoven Sisal Basket</h3>
+                        <p class="product-description">Traditional basket handwoven by women's cooperatives. Durable and eco-friendly.</p>
+                        <div class="product-footer">
+                            <div class="product-price">$32.00</div>
+                            <button class="add-to-cart" onclick="addToCart('Sisal Basket')">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Farmer Stories -->
+    <section class="stories-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Meet Our Producers</h2>
+                <p>Every product has a story. Meet the farmers and artisans behind our marketplace.</p>
+            </div>
+            <div class="stories-grid">
+                <div class="story-card">
+                    <div class="story-img" style="background-image: url('https://images.unsplash.com/photo-1582794543139-8ac9cad46993?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
+                    <div class="story-content">
+                        <h4>Mwanaisha Juma</h4>
+                        <p>"Before joining Tujenge Tanzania, I struggled to sell my coffee beans. Now, I earn three times more and can send all my children to school. This marketplace has changed our lives."</p>
+                        <p><small>Coffee Farmer, Kilimanjaro Region</small></p>
+                    </div>
+                </div>
+                <div class="story-card">
+                    <div class="story-img" style="background-image: url('https://images.unsplash.com/photo-1592503254549-d83d24a4dfab?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
+                    <div class="story-content">
+                        <h4>Rajab Simba</h4>
+                        <p>"As a wood carver, finding international buyers was impossible. Now through this platform, my carvings reach customers in Europe and America. I've even hired two apprentices!"</p>
+                        <p><small>Artisan, Dar es Salaam</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <div class="section-title">
+                <h2>How Our Marketplace Works</h2>
+                <p>Supporting Tanzanian producers while getting amazing products</p>
+            </div>
+            <div class="steps-grid">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Farmers & Artisans List Products</h3>
+                    <p>Local producers upload their products with fair prices set by our pricing algorithm.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>You Browse & Purchase</h3>
+                    <p>Customers worldwide browse our verified products and make purchases securely.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>We Handle Logistics</h3>
+                    <p>Our team manages quality control, packaging, and international shipping.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Producers Get Paid Fairly</h3>
+                    <p>Farmers receive 70% of the sale price (vs. 20-30% in traditional supply chains).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Tujenge Tanzania</h3>
+                    <p>Building sustainable prosperity through innovation, investment, and community development.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="marketplace.html">Marketplace</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Marketplace</h3>
+                    <ul>
+                        <li><a href="#">Become a Seller</a></li>
+                        <li><a href="#">Shipping Information</a></li>
+                        <li><a href="#">Return Policy</a></li>
+                        <li><a href="#">Wholesale Orders</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Dar es Salaam, Tanzania</li>
+                        <li><i class="fas fa-phone"></i> +255 123 456 789</li>
+                        <li><i class="fas fa-envelope"></i> orders@tujenge-tz.co.tz</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Tujenge Tanzania. All rights reserved. | Building a Better Future Together</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let cartCount = 3;
+        
+        function addToCart(productName) {
+            cartCount++;
+            document.querySelector('.cart-count').textContent = cartCount;
+            
+            // Show confirmation message
+            const message = document.createElement('div');
+            message.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background-color: var(--primary);
+                color: white;
+                padding: 15px 25px;
+                border-radius: var(--border-radius);
+                box-shadow: var(--shadow);
+                z-index: 9999;
+                animation: slideIn 0.3s ease;
+            `;
+            message.innerHTML = `<i class="fas fa-check-circle"></i> Added "${productName}" to cart!`;
+            document.body.appendChild(message);
+            
+            // Remove message after 3 seconds
+            setTimeout(() => {
+                message.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => document.body.removeChild(message), 300);
+            }, 3000);
+        }
+        
+        // Add CSS for animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Filter functionality
+        document.querySelectorAll('.filter-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
