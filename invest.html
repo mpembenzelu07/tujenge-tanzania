@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invest - Tujenge Tanzania</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #1E8449;
+            --secondary: #2E86C1;
+            --accent: #F39C12;
+            --dark: #17202A;
+            --light: #F8F9F9;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --border-radius: 8px;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s;
+            padding: 8px 16px;
+            border-radius: var(--border-radius);
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary);
+            background-color: rgba(30, 132, 73, 0.1);
+        }
+        
+        /* Investment Hero */
+        .invest-hero {
+            background: linear-gradient(135deg, rgba(30, 132, 73, 0.9), rgba(46, 134, 193, 0.9)), 
+                        url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 120px 0;
+            text-align: center;
+        }
+        
+        .invest-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .invest-hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            border: 2px solid var(--accent);
+        }
+        
+        .cta-button:hover {
+            background-color: transparent;
+            transform: translateY(-3px);
+        }
+        
+        /* Why Invest Section */
+        .why-invest {
+            padding: 100px 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .benefit-card {
+            background: #f8f9fa;
+            padding: 40px 30px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .benefit-icon {
+            background-color: rgba(30, 132, 73, 0.1);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+        }
+        
+        .benefit-icon i {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+        
+        .benefit-card h3 {
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        /* Investment Opportunities */
+        .opportunities {
+            padding: 100px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .opportunities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+        
+        .opportunity-card {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+        
+        .opportunity-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .opportunity-header {
+            padding: 30px;
+            color: white;
+            text-align: center;
+        }
+        
+        .opportunity-1 .opportunity-header {
+            background: linear-gradient(to right, #1E8449, #2E86C1);
+        }
+        
+        .opportunity-2 .opportunity-header {
+            background: linear-gradient(to right, #2E86C1, #F39C12);
+        }
+        
+        .opportunity-3 .opportunity-header {
+            background: linear-gradient(to right, #F39C12, #1E8449);
+        }
+        
+        .opportunity-header h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .opportunity-content {
+            padding: 30px;
+        }
+        
+        .investment-stats {
+            display: flex;
+            justify-content: space-between;
+            margin: 25px 0;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background-color: #eee;
+            border-radius: 5px;
+            margin: 25px 0;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background-color: var(--primary);
+            border-radius: 5px;
+        }
+        
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        .invest-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .invest-btn:hover {
+            background-color: #156b3a;
+        }
+        
+        /* Investment Calculator */
+        .calculator {
+            padding: 100px 0;
+            background-color: white;
+        }
+        
+        .calculator-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #f8f9fa;
+            border-radius: var(--border-radius);
+            padding: 50px;
+            box-shadow: var(--shadow);
+        }
+        
+        .calculator-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+        }
+        
+        .calculator-results {
+            background-color: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            text-align: center;
+        }
+        
+        .result-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 20px 0;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 100px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .testimonial-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+        
+        .testimonial-card:before {
+            content: '"';
+            font-size: 5rem;
+            color: rgba(30, 132, 73, 0.1);
+            position: absolute;
+            top: 10px;
+            left: 20px;
+        }
+        
+        .testimonial-content {
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .author-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .author-info h4 {
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+        
+        .author-info p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            padding: 100px 0;
+            background-color: white;
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            border-bottom: 1px solid #eee;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+        }
+        
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            padding: 15px 0;
+        }
+        
+        .faq-question h3 {
+            font-size: 1.2rem;
+            color: var(--dark);
+        }
+        
+        .faq-answer {
+            padding: 0 20px 20px 0;
+            color: #666;
+            display: none;
+        }
+        
+        .faq-answer.active {
+            display: block;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 70px 0 30px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-col h3 {
+            color: var(--accent);
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-col a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-col a:hover {
+            color: var(--accent);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .invest-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .calculator-inputs {
+                grid-template-columns: 1fr;
+            }
+            
+            .opportunities-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">
+                    <i class="fas fa-mountain"></i>
+                    Tujenge<span>Tanzania</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="marketplace.html">Marketplace</a></li>
+                    <li><a href="invest.html" class="active">Invest</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Investment Hero -->
+    <section class="invest-hero">
+        <div class="container">
+            <h1>Invest in Tanzania's Future</h1>
+            <p>Join our impact investment platform and earn competitive returns while creating lasting social and environmental change across Tanzania.</p>
+            <a href="#calculator" class="cta-button">Calculate Your Returns</a>
+        </div>
+    </section>
+
+    <!-- Why Invest -->
+    <section class="why-invest">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Invest With Us?</h2>
+                <p>We offer unique investment opportunities that combine financial returns with measurable impact</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Competitive Returns</h3>
+                    <p>Average annual returns of 15-25% across our portfolio, outperforming traditional investment options.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Risk Mitigation</h3>
+                    <p>Diversified portfolio across sectors and geographic regions reduces investment risk.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-search-dollar"></i>
+                    </div>
+                    <h3>Transparent Reporting</h3>
+                    <p>Real-time tracking of both financial performance and social impact metrics.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Exit Opportunities</h3>
+                    <p>Clear exit strategies including buyback options, trade sales, and secondary markets.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-globe-africa"></i>
+                    </div>
+                    <h3>Local Expertise</h3>
+                    <p>Our team has deep understanding of Tanzanian markets and regulatory environment.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Sustainable Impact</h3>
+                    <p>Every dollar invested creates measurable social and environmental benefits.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Investment Opportunities -->
+    <section class="opportunities">
+        <div class="container">
+            <div class="section-title">
+                <h2>Current Opportunities</h2>
+                <p>Browse our vetted investment opportunities with varying risk profiles and returns</p>
+            </div>
+            <div class="opportunities-grid">
+                <!-- Opportunity 1 -->
+                <div class="opportunity-card opportunity-1">
+                    <div class="opportunity-header">
+                        <h3>Solar Energy Fund</h3>
+                        <p>Target Return: 22% per annum</p>
+                    </div>
+                    <div class="opportunity-content">
+                        <p>Financing solar installations for schools, clinics, and small businesses in off-grid communities across Tanzania.</p>
+                        
+                        <div class="investment-stats">
+                            <div class="stat">
+                                <div class="stat-value">$1.2M</div>
+                                <div class="stat-label">Target</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">$850K</div>
+                                <div class="stat-label">Raised</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">36</div>
+                                <div class="stat-label">Days Left</div>
+                            </div>
+                        </div>
+                        
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 71%;"></div>
+                        </div>
+                        <div class="progress-text">
+                            <span>71% Funded</span>
+                            <span>Minimum: $500</span>
+                        </div>
+                        
+                        <button class="invest-btn" onclick="showInvestmentModal('Solar Energy Fund')">
+                            Invest Now
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Opportunity 2 -->
+                <div class="opportunity-card opportunity-2">
+                    <div class="opportunity-header">
+                        <h3>Agro-Tech Expansion</h3>
+                        <p>Target Return: 28% per annum</p>
+                    </div>
+                    <div class="opportunity-content">
+                        <p>Scaling our successful smart farming platform to 5,000 additional smallholder farmers across 3 regions.</p>
+                        
+                        <div class="investment-stats">
+                            <div class="stat">
+                                <div class="stat-value">$2.5M</div>
+                                <div class="stat-label">Target</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">$1.8M</div>
+                                <div class="stat-label">Raised</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">22</div>
+                                <div class="stat-label">Days Left</div>
+                            </div>
+                        </div>
+                        
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 72%;"></div>
+                        </div>
+                        <div class="progress-text">
+                            <span>72% Funded</span>
+                            <span>Minimum: $1,000</span>
+                        </div>
+                        
+                        <button class="invest-btn" onclick="showInvestmentModal('Agro-Tech Expansion')">
+                            Invest Now
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Opportunity 3 -->
+                <div class="opportunity-card opportunity-3">
+                    <div class="opportunity-header">
+                        <h3>Eco-Tourism Development</h3>
+                        <p>Target Return: 19% per annum</p>
+                    </div>
+                    <div class="opportunity-content">
+                        <p>Developing sustainable tourism lodges near national parks, creating 300+ jobs for local communities.</p>
+                        
+                        <div class="investment-stats">
+                            <div class="stat">
+                                <div class="stat-value">$3.8M</div>
+                                <div class="stat-label">Target</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">$2.9M</div>
+                                <div class="stat-label">Raised</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">45</div>
+                                <div class="stat-label">Days Left</div>
+                            </div>
+                        </div>
+                        
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 76%;"></div>
+                        </div>
+                        <div class="progress-text">
+                            <span>76% Funded</span>
+                            <span>Minimum: $2,500</span>
+                        </div>
+                        
+                        <button class="invest-btn" onclick="showInvestmentModal('Eco-Tourism Development')">
+                            Invest Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Investment Calculator -->
+    <section class="calculator" id="calculator">
+        <div class="container">
+            <div class="section-title">
+                <h2>Investment Calculator</h2>
+                <p>See how your investment could grow over time</p>
+            </div>
+            <div class="calculator-container">
+                <div class="calculator-inputs">
+                    <div class="input-group">
+                        <label for="investmentAmount">Investment Amount ($)</label>
+                        <input type="range" id="investmentAmount" min="500" max="100000" value="10000" step="500">
+                        <div class="range-value" id="amountValue">$10,000</div>
+                    </div>
+                    <div class="input-group">
+                        <label for="investmentPeriod">Investment Period (Years)</label>
+                        <input type="range" id="investmentPeriod" min="1" max="10" value="5" step="1">
+                        <div class="range-value" id="periodValue">5 years</div>
+                    </div>
+                    <div class="input-group">
+                        <label for="expectedReturn">Expected Annual Return (%)</label>
+                        <select id="expectedReturn">
+                            <option value="15">Conservative (15%)</option>
+                            <option value="20" selected>Balanced (20%)</option>
+                            <option value="25">Growth (25%)</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="reinvestment">Reinvest Returns?</label>
+                        <select id="reinvestment">
+                            <option value="yes" selected>Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="calculator-results">
+                    <h3>Projected Returns</h3>
+                    <div class="result-value" id="projectedValue">$24,883</div>
+                    <p>Your investment of <span id="initialAmount">$10,000</span> could grow to <span id="finalAmount">$24,883</span> in <span id="selectedYears">5</span> years</p>
+                    <p><small>This projection is for illustrative purposes only. Actual returns may vary.</small></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Investor Stories</h2>
+                <p>Hear from our global community of impact investors</p>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        "I've been investing with Tujenge Tanzania for three years. Not only have I earned an average 22% annual return, but I can also see exactly how my money is improving lives in Tanzania through their transparent impact reports."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-img" style="background-image: url('https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
+                        <div class="author-info">
+                            <h4>Michael Chen</h4>
+                            <p>Impact Investor, Singapore</p>
+                            <p>Invested: $75,000 across 4 projects</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        "As a Tanzanian diaspora member, I wanted to invest back home but was worried about transparency. Tujenge Tanzania's detailed reporting and local team gave me confidence. My investments are creating jobs in my hometown."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-img" style="background-image: url('https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
+                        <div class="author-info">
+                            <h4>Sarah Juma</h4>
+                            <p>Tanzanian Diaspora, London</p>
+                            <p>Invested: $25,000 in renewable energy</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        "Our foundation was looking for impact investments that align with our mission. Tujenge Tanzania offered the perfect blend of financial returns and measurable social impact. The solar school project alone has brought electricity to 15,000 students."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-img" style="background-image: url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
+                        <div class="author-info">
+                            <h4>Jennifer Wilson</h4>
+                            <p>Foundation Director, USA</p>
+                            <p>Invested: $500,000 portfolio</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+                <p>Get answers to common questions about investing with us</p>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>What is the minimum investment amount?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>The minimum investment varies by opportunity, ranging from $500 to $2,500. We're committed to making impact investing accessible to both retail and institutional investors.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>How are returns paid to investors?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Returns are typically paid quarterly or semi-annually, depending on the project. You can choose to receive dividends or reinvest them automatically for compound growth.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>What is the typical investment term?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Investment terms range from 3 to 7 years, with most opportunities structured as 5-year investments. We provide clear exit strategies for each opportunity.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>How do you measure social impact?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We use the Impact Management Project framework to track metrics across five dimensions: What, Who, How Much, Contribution, and Risk. Investors receive quarterly impact reports alongside financial statements.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>Is my investment secured by assets?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, most of our investments are secured by tangible assets such as solar equipment, agricultural infrastructure, or real estate. Each opportunity document specifies the security arrangements.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Tujenge Tanzania</h3>
+                    <p>Building sustainable prosperity through innovation, investment, and community development.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="marketplace.html">Marketplace</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Investment</h3>
+                    <ul>
+                        <li><a href="#">How It Works</a></li>
+                        <li><a href="#">Risk Disclosure</a></li>
+                        <li><a href="#">Investor Portal</a></li>
+                        <li><a href="#">Tax Information</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Dar es Salaam, Tanzania</li>
+                        <li><i class="fas fa-phone"></i> +255 123 456 789</li>
+                        <li><i class="fas fa-envelope"></i> investments@tujenge-tz.co.tz</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Tujenge Tanzania. All rights reserved. | Building a Better Future Together</p>
+                <p><small>Investments involve risks, including possible loss of principal. Past performance is not indicative of future results.</small></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Investment Calculator
+        const investmentAmount = document.getElementById('investmentAmount');
+        const investmentPeriod = document.getElementById('investmentPeriod');
+        const expectedReturn = document.getElementById('expectedReturn');
+        const reinvestment = document.getElementById('reinvestment');
+        
+        const amountValue = document.getElementById('amountValue');
+        const periodValue = document.getElementById('periodValue');
+        const projectedValue = document.getElementById('projectedValue');
+        const initialAmount = document.getElementById('initialAmount');
+        const finalAmount = document.getElementById('finalAmount');
+        const selectedYears = document.getElementById('selectedYears');
+        
+        function updateCalculator() {
+            const amount = parseInt(investmentAmount.value);
+            const years = parseInt(investmentPeriod.value);
+            const returnRate = parseInt(expectedReturn.value) / 100;
+            const reinvest = reinvestment.value === 'yes';
+            
+            // Format amount with commas
+            const formattedAmount = amount.toLocaleString();
+            amountValue.textContent = `$${formattedAmount}`;
+            periodValue.textContent = `${years} year${years > 1 ? 's' : ''}`;
+            
+            // Calculate projected value
+            let projected;
+            if (reinvest) {
+                // Compound interest
+                projected = amount * Math.pow(1 + returnRate, years);
+            } else {
+                // Simple interest
+                projected = amount * (1 + returnRate * years);
+            }
+            
+            const formattedProjected = Math.round(projected).toLocaleString();
+            projectedValue.textContent = `$${formattedProjected}`;
+            initialAmount.textContent = `$${formattedAmount}`;
+            finalAmount.textContent = `$${formattedProjected}`;
+            selectedYears.textContent = years;
+        }
+        
+        investmentAmount.addEventListener('input', updateCalculator);
+        investmentPeriod.addEventListener('input', updateCalculator);
+        expectedReturn.addEventListener('change', updateCalculator);
+        reinvestment.addEventListener('change', updateCalculator);
+        
+        // Initialize calculator
+        updateCalculator();
+        
+        // FAQ Toggle
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('i');
+            
+            answer.classList.toggle('active');
+            
+            if (answer.classList.contains('active')) {
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+        
+        // Investment Modal
+        function showInvestmentModal(opportunity) {
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0,0,0,0.7);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 10000;
+                padding: 20px;
+            `;
+            
+            modal.innerHTML = `
+                <div style="background: white; border-radius: var(--border-radius); padding: 40px; max-width: 500px; width: 100%; position: relative;">
+                    <button onclick="this.parentElement.parentElement.remove()" style="position: absolute; top: 15px; right: 15px; background: none; border: none; font-size: 1.5rem; cursor: pointer;">×</button>
+                    <h2 style="color: var(--primary); margin-bottom: 20px;">Invest in ${opportunity}</h2>
+                    <p>To proceed with your investment, please complete the form below. Our investment team will contact you within 24 hours to finalize the process.</p>
+                    
+                    <form id="investmentForm" style="margin-top: 30px;">
+                        <div style="margin-bottom: 20px;">
+                            <label style="display: block; margin-bottom: 8px; font-weight: 600;">Investment Amount ($)</label>
+                            <input type="number" min="500" step="100" value="1000" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: var(--border-radius);">
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <label style="display: block; margin-bottom: 8px; font-weight: 600;">Full Name</label>
+                            <input type="text" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: var(--border-radius);">
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <label style="display: block; margin-bottom: 8px; font-weight: 600;">Email Address</label>
+                            <input type="email" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: var(--border-radius);">
+                        </div>
+                        <button type="submit" style="width: 100%; padding: 15px; background-color: var(--primary); color: white; border: none; border-radius: var(--border-radius); font-weight: 700; cursor: pointer;">
+                            Submit Investment Inquiry
+                        </button>
+                    </form>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            // Handle form submission
+            modal.querySelector('form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your investment inquiry! Our team will contact you within 24 hours to discuss next steps.');
+                modal.remove();
+            });
+        }
+    </script>
+</body>
+</html>
