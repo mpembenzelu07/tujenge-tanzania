@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Projects - Tujenge Tanzania</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #1E8449;
+            --secondary: #2E86C1;
+            --accent: #F39C12;
+            --dark: #17202A;
+            --light: #F8F9F9;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --border-radius: 8px;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s;
+            padding: 8px 16px;
+            border-radius: var(--border-radius);
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary);
+            background-color: rgba(30, 132, 73, 0.1);
+        }
+        
+        /* Projects Hero */
+        .projects-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1548013146-72479768bada?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .projects-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .projects-hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Project Categories */
+        .project-categories {
+            padding: 60px 0 30px;
+            background-color: white;
+        }
+        
+        .categories-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        
+        .category-btn {
+            padding: 12px 25px;
+            background-color: #f8f9fa;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .category-btn:hover, .category-btn.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        /* Projects Grid */
+        .projects-section {
+            padding: 60px 0 100px;
+            background-color: #f8f9fa;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 40px;
+        }
+        
+        .project-card {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .project-img {
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .project-content {
+            padding: 30px;
+        }
+        
+        .project-category {
+            display: inline-block;
+            background-color: rgba(30, 132, 73, 0.1);
+            color: var(--primary);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .project-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .project-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid #eee;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        /* Impact Section */
+        .impact-section {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        
+        .impact-card {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: #f8f9fa;
+            border-radius: var(--border-radius);
+        }
+        
+        .impact-icon {
+            width: 70px;
+            height: 70px;
+            background-color: rgba(30, 132, 73, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+        }
+        
+        .impact-icon i {
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 70px 0 30px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-col h3 {
+            color: var(--accent);
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-col a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-col a:hover {
+            color: var(--accent);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .projects-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">
+                    <i class="fas fa-mountain"></i>
+                    Tujenge<span>Tanzania</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="projects.html" class="active">Projects</a></li>
+                    <li><a href="marketplace.html">Marketplace</a></li>
+                    <li><a href="invest.html">Invest</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Projects Hero -->
+    <section class="projects-hero">
+        <div class="container">
+            <h1>Transforming Communities</h1>
+            <p>Explore our portfolio of sustainable development projects creating real impact across Tanzania while generating attractive returns for investors.</p>
+        </div>
+    </section>
+
+    <!-- Project Categories -->
+    <section class="project-categories">
+        <div class="container">
+            <div class="categories-grid">
+                <button class="category-btn active">All Projects</button>
+                <button class="category-btn">Agriculture</button>
+                <button class="category-btn">Renewable Energy</button>
+                <button class="category-btn">Water & Sanitation</button>
+                <button class="category-btn">Education</button>
+                <button class="category-btn">Healthcare</button>
+                <button class="category-btn">Tourism</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <section class="projects-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Featured Projects</h2>
+                <p>Each project combines social impact with sustainable revenue generation</p>
+            </div>
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-img" style="background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="project-content">
+                        <span class="project-category">Agriculture</span>
+                        <h3>Kilimo Smart Farming Initiative</h3>
+                        <p>IoT-enabled smart farming for 500 smallholder farmers in Morogoro region, increasing yields by 300% through precision agriculture techniques.</p>
+                        <div class="project-stats">
+                            <div class="stat">
+                                <div class="stat-value">42%</div>
+                                <div class="stat-label">ROI</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">$850K</div>
+                                <div class="stat-label">Invested</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">2,500</div>
+                                <div class="stat-label">Lives Impacted</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="project-img" style="background-image: url('https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="project-content">
+                        <span class="project-category">Renewable Energy</span>
+                        <h3>Solar for Schools Program</h3>
+                        <p>Installing solar systems in 150 rural schools across Tanzania, providing electricity for education while selling excess power to local communities.</p>
+                        <div class="project-stats">
+                            <div class="stat">
+                                <div class="stat-value">28%</div>
+                                <div class="stat-label">ROI</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">$1.2M</div>
+                                <div class="stat-label">Invested</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">45,000</div>
+                                <div class="stat-label">Students Served</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-img" style="background-image: url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="project-content">
+                        <span class="project-category">Tourism</span>
+                        <h3>Zanzibar Eco-Lodge Network</h3>
+                        <p>Sustainable tourism lodges owned and operated by local communities, preserving cultural heritage while creating 200+ jobs.</p>
+                        <div class="project-stats">
+                            <div class="stat">
+                                <div class="stat-value">35%</div>
+                                <div class="stat-label">ROI</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">$2.1M</div>
+                                <div class="stat-label">Invested</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">8</div>
+                                <div class="stat-label">Communities</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 4 -->
+                <div class="project-card">
+                    <div class="project-img" style="background-image: url('https://images.unsplash.com/photo-1576086213369-97a306d36557?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="project-content">
+                        <span class="project-category">Water & Sanitation</span>
+                        <h3>Clean Water Access Initiative</h3>
+                        <p>Building and maintaining 50 water purification systems in drought-prone regions, with a sustainable maintenance fee model from communities.</p>
+                        <div class="project-stats">
+                            <div class="stat">
+                                <div class="stat-value">22%</div>
+                                <div class="stat-label">ROI</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">$750K</div>
+                                <div class="stat-label">Invested</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">30,000</div>
+                                <div class="stat-label">People Served</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 5 -->
+                <div class="project-card">
+                    <div class="project-img" style="background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="project-content">
+                        <span class="project-category">Education</span>
+                        <h3>Digital Skills Academy</h3>
+                        <p>Tech training centers in 5 major cities, offering coding and digital marketing courses with income-sharing agreements for graduates.</p>
+                        <div class="project-stats">
+                            <div class="stat">
+                                <div class="stat-value">31%</div>
+                                <div class="stat-label">ROI</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">$600K</div>
+                                <div class="stat-label">Invested</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">1,200</div>
+                                <div class="stat-label">Graduates</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 6 -->
+                <div class="project-card">
+                    <div class="project-img" style="background-image: url('https://images.unsplash.com/photo-1516549655669-df565bc5d7e4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="project-content">
+                        <span class="project-category">Healthcare</span>
+                        <h3>Mobile Health Clinics</h3>
+                        <p>Fleet of 20 mobile clinics serving remote areas with telemedicine capabilities, funded through affordable subscription plans.</p>
+                        <div class="project-stats">
+                            <div class="stat">
+                                <div class="stat-value">25%</div>
+                                <div class="stat-label">ROI</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">$950K</div>
+                                <div class="stat-label">Invested</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">65,000</div>
+                                <div class="stat-label">Patients</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section class="impact-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Cumulative Impact</h2>
+                <p>Since our founding, our projects have created measurable positive change</p>
+            </div>
+            <div class="impact-grid">
+                <div class="impact-card">
+                    <div class="impact-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>150,000+</h3>
+                    <p>Lives Directly Impacted</p>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3>3,200+</h3>
+                    <p>Jobs Created</p>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-icon">
+                        <i class="fas fa-tree"></i>
+                    </div>
+                    <h3>45,000+</h3>
+                    <p>Trees Planted</p>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>18,000+</h3>
+                    <p>Students Supported</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Tujenge Tanzania</h3>
+                    <p>Building sustainable prosperity through innovation, investment, and community development.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="marketplace.html">Marketplace</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Business</h3>
+                    <ul>
+                        <li><a href="invest.html">Investment Opportunities</a></li>
+                        <li><a href="#">Partnerships</a></li>
+                        <li><a href="#">Our Impact</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Dar es Salaam, Tanzania</li>
+                        <li><i class="fas fa-phone"></i> +255 123 456 789</li>
+                        <li><i class="fas fa-envelope"></i> info@tujenge-tz.co.tz</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Tujenge Tanzania. All rights reserved. | Building a Better Future Together</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple category filtering
+        document.querySelectorAll('.category-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                document.querySelectorAll('.category-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // In a real implementation, this would filter the projects
+                // For now, we'll just show a message
+                const category = this.textContent;
+                if(category !== 'All Projects') {
+                    alert(`Filtering projects by category: ${category}\n\nIn a full implementation, this would filter the project cards displayed.`);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
